@@ -16,11 +16,14 @@ var campgroundsRoutes	= require('./routes/campgroundsRoutes'),
 	usersRoutes			= require('./routes/usersRoutes');
 
 //mongoose config
-mongoose.connect('mongodb+srv://varun:yelpcamp123@cluster0-pp3ro.mongodb.net/test?retryWrites=true&w=majority',{useNewUrlParser:true}).then(()=>{console.log('db connected')}).catch(err=>{console.log(err)});
+var dbURL=process.env.databaseURL || 'mongodb://localhost:27017/yelpcamp';
+mongoose.connect(dbURL,{useNewUrlParser:true}).then(()=>{console.log('db connected')}).catch(err=>{console.log(err)});
+// mongoose.connect('mongodb+srv://varun:yelpcamp123@cluster0-pp3ro.mongodb.net/test?retryWrites=true&w=majority',{useNewUrlParser:true}).then(()=>{console.log('db connected')}).catch(err=>{console.log(err)});
 mongoose.set('useFindAndModify', false);
 // seedDB();
 
 app.set('view engine','ejs');
+console.log(dbURL);
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
@@ -52,6 +55,6 @@ app.use(usersRoutes);
 
 // var campgroundsj=JSON.parse(campgrounds);
 
-app.listen(process.env.PORT || 3000,()=>{
-	console.log('Server Started');	
+app.listen(process.env.PORT || 3000,process.env.IP,()=>{
+	console.log('server started');	
 });
