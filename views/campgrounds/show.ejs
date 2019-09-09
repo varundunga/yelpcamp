@@ -1,0 +1,95 @@
+<% include ../templates/header%>
+
+	<div class='container'>
+		<div style='width:80%; margin:40px 40px 20px 180px'>
+			<!-- <div class='row'> -->
+			<div class='m-1 font-italic'>
+				posted by
+				<strong>
+
+					<%=campground.author.username%>
+				</strong>
+			</div>
+			<div class='row'>
+
+				<div class="col-6 rounded" style='display:flex; flex-wrap:wrap;'>
+
+					<img src="<%=campground.image %>" class='img-thumbnail float-left'>
+				</div>
+
+			</div>
+			<div class="row caption text-center pl-3">
+				<h6 class='text-center'>
+					<%=	campground.name%>
+				</h6>
+
+			</div>
+
+			<div class='row pl-3'>
+
+				<%if(currentUser && currentUser._id.equals(campground.author.id)){%>
+					<div class='float-left m-1'>
+						<a class='btn btn-primary btn-sm' href='/campgrounds/<%=campground._id%>/edit'>Edit</a>
+					</div>
+
+					<div class='float-left m-1'>
+						<form action='/campgrounds/<%=campground._id%>?_method=DELETE' method='POST'>
+							<button class='btn btn-danger btn-sm'>
+								Delete
+							</button>
+						</form>
+
+					</div>
+					<%}%>
+
+						<div class='float-left m-1'>
+							<a href='/campgrounds/<%=campground._id%>/comments/new'>add coment</a>
+
+						</div>
+
+						<div class='float-left m-1'>
+							<a href='/campgrounds'>go back</a>
+
+						</div>
+
+			</div>
+
+			<!-- </div> -->
+			<%campground.comments.forEach(function(newComment){%>
+				<div class='row pl-3'>
+					<div class='col-6 p-0 m-0'>
+						<p class='p-0 m-0 small'>
+							<strong>
+								<%=newComment.author.username%>
+							</strong>
+						</p>
+						<div>
+							<p class='p-0 m-0 font-italic small' style='overflow-wrap: break-word;'>
+								<%=newComment.comment%>
+							</p>
+						</div>
+
+						<%if(currentUser && currentUser._id.equals(newComment.author.id)){%>
+							<div class='row'>
+								<div class='float-left ml-3 mt-1 small'>
+									<a href='/campgrounds/<%=campground._id%>/comments/<%=newComment._id%>/edit'>edit</a>
+								</div>
+								<div class='float-left ml-2'>
+									<form action='/campgrounds/<%=campground._id%>/comments/<%=newComment._id%>?_method=DELETE' method='POST'>
+										<button class='btn-default p-0' style='background:none;border:none'>
+											<i class="fa fa-trash" aria-hidden="true"></i>
+										</button>
+									</form>
+								</div>
+							</div>
+							<%}%>
+
+					</div>
+
+				</div>
+				<%})%>
+		</div>
+
+	</div>
+
+	<% include ../templates/footer%>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Yelp Camp</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	
+</head>
+
+<body class='mb-3'>
+
+    <nav class="navbar navbar-default navbar-expand-lg mb-3">
+        <a class="navbar-brand" href="/">Yelpcamp!</a>
+
+        <div class='collapse navbar-collapse' style="position:absolute; right:0;">
+			<%if(!currentUser){%>
+            <a class="navbar-item mr-3" href="/users/new">Sign up </a>
+            <a class="navbar-item mr-3" href="/users/login">Login</a>
+			<%}else{%>
+			<a class="navbar-item mr-3" href="#">Signed in as <%=currentUser.username%></a>
+            <a class="navbar-item mr-3" href="/users/logout">Logout</a>
+			<%}%>
+        </div>
+
+    </nav>
+<div class='container'>
+	<%if(error && error.length>0){%>
+	<div class='alert alert-danger' role='alert'>
+		<%=error%>
+	</div>
+	<%}%>
+	<%if(success && success.length>0){%>
+	<div class='alert alert-success' role='alert'>
+		<%=success%>
+	</div>
+	<%}%>
