@@ -6,7 +6,7 @@ pipeline {
                 echo 'building with latest git commit'
                 echo $GIT_COMMIT
                 echo $GIT_BRANCH
-                sh 'docker build -t test' .
+                sh 'docker build -t test .'
             }
         }
         stage('test'){
