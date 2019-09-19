@@ -23,7 +23,7 @@ mongoose.set('useFindAndModify', false);
 // seedDB();
 
 app.set('view engine','ejs');
-console.log(dbURL);
+// console.log(dbURL);
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
