@@ -1,0 +1,16 @@
+version: '3'
+services: 
+  mongo:
+    image: mongo:4.0.12-xenial
+    ports:
+      - '27017:27017'
+    
+    
+  nodeserver:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    depends_on:
+      - mongo  
+    ports:
+      - '3000:3000'

@@ -16,7 +16,7 @@ var campgroundsRoutes	= require('./routes/campgroundsRoutes'),
 	usersRoutes			= require('./routes/usersRoutes');
 
 //mongoose config
-var dbURL=process.env.databaseURL || 'mongodb://localhost:27017/yelpcamp';
+var dbURL=process.env.databaseURL || 'mongodb://mongo:27017/nodeserver';
 mongoose.connect(dbURL,{useNewUrlParser:true}).then(()=>{console.log('db connected')}).catch(err=>{console.log(err)});
 // mongoose.connect('mongodb+srv://varun:yelpcamp123@cluster0-pp3ro.mongodb.net/test?retryWrites=true&w=majority',{useNewUrlParser:true}).then(()=>{console.log('db connected')}).catch(err=>{console.log(err)});
 mongoose.set('useFindAndModify', false);
