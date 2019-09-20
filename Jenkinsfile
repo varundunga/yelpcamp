@@ -17,7 +17,7 @@ pipeline {
                 echo 'building and running tests on nodeserver'
                 sh 'docker run test npm run test'
                 echo 'building and running tests on nodeserver+mongodb'
-                sh 'docker-compose -f test.yml up --build'
+                sh 'docker-compose up --build'
 
 
             }
@@ -27,7 +27,7 @@ pipeline {
         always {
             // Always cleanup after the build.
             
-            sh 'docker-compose -f test.yml down'
+            sh 'docker-compose down'
             sh 'rm .env'
         }
     }
