@@ -1,8 +1,9 @@
 pipeline {
     agent any
+    options { timestamps(); timeout(time: 1, unit: 'MINUTES')
     stages {
         stage('build') {
-            timeout(time: 1, unit: 'MINUTES')
+            
             steps {
                 echo 'building with latest git commit'
                 sh 'echo $GIT_COMMIT'
@@ -11,7 +12,7 @@ pipeline {
             }
         }
         stage('test'){
-            timeout(time: 1, unit: 'MINUTES')
+            
             steps{
                 echo 'building and running tests on nodeserver'
                 sh 'docker run test npm run test'
