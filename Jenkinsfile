@@ -4,8 +4,8 @@ pipeline {
         stage('build') {
             steps {
                 echo 'building with latest git commit'
-                echo $GIT_COMMIT
-                echo $GIT_BRANCH
+                sh 'echo $GIT_COMMIT'
+                sh 'echo $GIT_BRANCH'
                 sh 'docker build -t test .'
             }
         }
