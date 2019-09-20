@@ -28,7 +28,7 @@ pipeline {
             // Always cleanup after the build.
             
             sh 'docker-compose down'
-            sh 'rm .env'
+            
         }
     }
 }
